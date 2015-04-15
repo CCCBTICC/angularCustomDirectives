@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--CDNs-->
+    <!-- AngularJS 1.3.14 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <!-- jQuery cdn  1.11.2 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!--Bootstrap css 3.3.4-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <!--Bootstrap js 3.3.4 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <!--Custom Directive-->
+    <script src="Directives/CBTINavBar.js"></script>
+
+    <script>
+        var app = angular.module('navBarApp', ['CBTINavBar']);
+        app.controller('navController', function ($scope) {
+            $scope.menuItems = [
+                {text: "My Achievement", link: "#/"},
+                {text: "Achievement list", link: "#/questions/list"},
+                {text: "Profile", link: "#/questions/list"}
+            ];
+            $scope.title = {text: "AchievementApp", link: "#/"};
+            $scope.buttons = [{
+                text: "Sign in",
+                click: function () {
+                    alert("sign in")
+                },
+                type: "btn-primary"
+            }, {
+                text: "Sign up",
+                click: function () {
+                    alert("sign up")
+                },
+                type: "btn-success"
+            }];
+        });
+    </script>
+
+</head>
+
+<body ng-app="navBarApp" ng-controller="navController">
+<nav-bar></nav-bar>
+</body>
+
+</html>
