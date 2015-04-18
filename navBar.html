@@ -15,33 +15,30 @@
     <script src="Directives/CBTINavBar.js"></script>
 
     <script>
-        var app = angular.module('navBarApp', ['CBTINavBar']);
-        app.controller('navController', function ($scope) {
-            $scope.menuItems = [
-                {text: "My Achievement", link: "#/"},
-                {text: "Achievement list", link: "#/questions/list"},
-                {text: "Profile", link: "#/questions/list"}
-            ];
-            $scope.title = {text: "AchievementApp", link: "#/"};
-            $scope.buttons = [{
-                text: "Sign in",
-                click: function () {
-                    alert("sign in")
-                },
-                type: "btn-primary"
-            }, {
-                text: "Sign up",
-                click: function () {
-                    alert("sign up")
-                },
-                type: "btn-success"
-            }];
+        var app = angular.module('navbarDemoApp',['CBTINavBar']).config(function($provide){
+            $provide.decorator('navBarValues',['$delegate',function(navBarValues){
+                navBarValues.title.text="Title";
+                navBarValues.buttons = [{
+                    text:"Item1",
+                    click:function(){
+                        alert("item1 click");
+                    },
+                    type:"btn-primary"
+                },{
+                    text:"Item2",
+                    click:function(){
+                        alert("item2 click");
+                    },
+                    type:"btn-success"
+                }
+                ];
+                return navBarValues;
+            }])
         });
     </script>
-
 </head>
 
-<body ng-app="navBarApp" ng-controller="navController">
+<body ng-app="navbarDemoApp">
 <nav-bar></nav-bar>
 </body>
 
